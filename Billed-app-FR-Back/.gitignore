@@ -1,0 +1,6 @@
+database_test.sqlite
+node_modules/
+coverage/
+.DS_Store
+package-lock.json
+

@@ -1,0 +1,42 @@
+liens :
+-------
+[Projet OC](https://openclassrooms.com/fr/paths/314/projects/809/assignment)
+[Front github](https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Front)
+[Back github](https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back)
+[Rapport de bugs](https://www.notion.so/a7a612fc166747e78d95aa38106a55ec?v=2a8d3553379c4366b6f66490ab8f0b90)
+
+*************************************************
+
+XzYQ4i
+
+*************************************************
+
+Lancer les tests en local avec Jest :
+-------------------------------------
+npm run test
+
+*************************************************
+
+Lancer un seul test :
+---------------------
+npm i -g jest-cli
+jest src/__tests__/your_test_file.js
+
+*************************************************
+
+Voir la couverture de test :
+----------------------------
+http://127.0.0.1:8080/coverage/lcov-report/
+
+*************************************************
+
+Codes :
+-------
+utilisateur : admin@test.tld 
+mot de passe : admin
+
+utilisateur : employee@test.tld
+mot de passe : employee
+
+*************************************************
+

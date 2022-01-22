@@ -1,0 +1,29 @@
+liens :
+-------
+[Projet OC](https://openclassrooms.com/fr/paths/314/projects/809/assignment)
+[Front github](https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Front)
+[Back github](https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back)
+[Rapport de bugs](https://www.notion.so/a7a612fc166747e78d95aa38106a55ec?v=2a8d3553379c4366b6f66490ab8f0b90)
+
+*************************************************
+
+XzYQ4i
+
+*************************************************
+
+Lancer l'API :
+--------------
+npm run run:dev
+
+*************************************************
+
+Codes :
+-------
+utilisateur : admin@test.tld 
+mot de passe : admin
+
+utilisateur : employee@test.tld
+mot de passe : employee
+
+*************************************************
+
