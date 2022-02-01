@@ -7,6 +7,7 @@
   "settings": {
 
     "liveServer.settings.port": 8080,
+    "liveServer.settings.file": "",
     "liveServer.settings.multiRootWorkspaceName": "Billed-app-FR-Front",
 
     // "restoreTerminals.terminals": [
