@@ -12,7 +12,7 @@
 Le test ci-dessous nous démontre que l'affichage des notes de frais n'est pas conforme aux attentes.  
 Les notes devraient apparaître de la plus récente à la plus ancienne.
 
-<img alt="Rapport de test nº1 FAIL" src="_img_README/bug-1-fail.png" width="600">
+<img alt="Rapport de test nº1 FAIL" src="_img_README/bug-1-fail.png" width="700">
 
 Nous pouvons constater dans le fichier [Billed-app-FR-Front/src/views/BillsUI.js](Billed-app-FR-Front/src/views/BillsUI.js) que la fonction suivante...
 
@@ -54,7 +54,7 @@ Le test passe maintenant au vert.
 
 Le test suivant met en évidence l'impossibilité de se connnecter en tant qu'administrateur malgré des identifiants corrects.
 
-<img alt="Rapport de test nº2 FAIL" src="_img_README/bug-2-fail.png" width="600">
+<img alt="Rapport de test nº2 FAIL" src="_img_README/bug-2-fail.png" width="700">
 
 La méthode ***.handleSubmitAdmin()*** de la classs ***Login*** située dans le fichier [Billed-app-FR-Front/src/containers/Login.js](Billed-app-FR-Front/src/containers/Login.js) récupère les données de l'***input*** en ciblant l'attribut ***data-testid***.
 
@@ -101,11 +101,11 @@ Le justificatif d'une note de frais n'apparait pas si son format est autre que *
 
 Exemple ci-dessous lors de la créaton d'une note avec un justificatif au format ***bmp*** :
 
-<img alt="Open Bill FAIL" src="_img_README/open-bill-fail.png" width="400">
+<img alt="Open Bill FAIL" src="_img_README/open-bill-fail.png" width="500">
 
 La pièce jointe ne s'affiche pas en mode _employé_ :
 
-<img alt="Open justif FAIL" src="_img_README/justif-fail-employe.png" width="400">
+<img alt="Open justif FAIL" src="_img_README/justif-fail-employe.png" width="500">
 
 Ni en mode _admin_ :
 
