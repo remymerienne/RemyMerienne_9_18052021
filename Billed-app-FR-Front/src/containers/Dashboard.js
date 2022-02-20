@@ -27,13 +27,14 @@ export const filteredBills = (data, status) => {
     }) : []
 }
 
+// - Affichage des vignettes 'note de frais'
+// -----------------------------------------
 export const card = (bill) => {
   const firstAndLastNames = bill.email.split('@')[0]
   const firstName = firstAndLastNames.includes('.') ?
     firstAndLastNames.split('.')[0] : ''
   const lastName = firstAndLastNames.includes('.') ?
   firstAndLastNames.split('.')[1] : firstAndLastNames
-
   return (`
     <div class='bill-card' id='open-bill${bill.id}' data-testid='open-bill${bill.id}'>
       <div class='bill-card-name-container'>
@@ -51,6 +52,7 @@ export const card = (bill) => {
     </div>
   `)
 }
+// - =======================================
 
 export const cards = (bills) => {
   return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
@@ -85,6 +87,8 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
+  // **************************************************************************
+
   handleEditTicket(e, bill, bills) {
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
@@ -109,6 +113,9 @@ export default class {
     $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
   }
+  
+  // **************************************************************************
+
 
   handleAcceptSubmit = (e, bill) => {
     const newBill = {
@@ -130,6 +137,8 @@ export default class {
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
 
+  // - Affichage des listes sur click flèches + rotation
+  // ---------------------------------------------------
   handleShowTickets(e, bills, index) {
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
