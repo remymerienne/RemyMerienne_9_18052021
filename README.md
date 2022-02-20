@@ -12,7 +12,7 @@
 Le test ci-dessous nous démontre que l'affichage des notes de frais n'est pas conforme aux attentes.  
 Les notes devraient apparaître de la plus récente à la plus ancienne.
 
-<img alt="Rapport de test nº1 FAIL" src="_img_README/bug-1-fail.png" width="700">
+<img alt="Rapport de test nº1 FAIL" src="supply/_img_README/bug-1-fail.png" width="700">
 
 Nous pouvons constater dans le fichier [Billed-app-FR-Front/src/views/BillsUI.js](Billed-app-FR-Front/src/views/BillsUI.js) que la fonction suivante...
 
@@ -46,7 +46,7 @@ const rows = (data) => {
 
 Le test passe maintenant au vert.
 
-<img alt="Rapport de test nº1 PASS" src="_img_README/bug-1-pass.png" width="500">
+<img alt="Rapport de test nº1 PASS" src="supply/_img_README/bug-1-pass.png" width="500">
 
 ***
 
@@ -54,7 +54,7 @@ Le test passe maintenant au vert.
 
 Le test suivant met en évidence l'impossibilité de se connnecter en tant qu'administrateur malgré des identifiants corrects.
 
-<img alt="Rapport de test nº2 FAIL" src="_img_README/bug-2-fail.png" width="700">
+<img alt="Rapport de test nº2 FAIL" src="supply/_img_README/bug-2-fail.png" width="700">
 
 La méthode ***.handleSubmitAdmin()*** de la classs ***Login*** située dans le fichier [Billed-app-FR-Front/src/containers/Login.js](Billed-app-FR-Front/src/containers/Login.js) récupère les données de l'***input*** en ciblant l'attribut ***data-testid***.
 
@@ -85,13 +85,13 @@ handleSubmitAdmin = e => {
 
 Le test passe :
 
-<img alt="Rapport de test nº2 PASS" src="_img_README/bug-2-pass.png" width="500">
+<img alt="Rapport de test nº2 PASS" src="supply/_img_README/bug-2-pass.png" width="500">
 
 ***
 
 ## 3. All tests passed
 
-<img alt="Rapport de test nº2 PASS" src="_img_README/all-test-pass.png" width="300">
+<img alt="Rapport de test nº2 PASS" src="supply/_img_README/all-test-pass.png" width="300">
 
 ***
 
@@ -101,19 +101,19 @@ Le justificatif d'une note de frais n'apparait pas si son format est autre que *
 
 Exemple ci-dessous lors de la créaton d'une note avec un justificatif au format ***bmp*** :
 
-<img alt="Open Bill FAIL" src="_img_README/open-bill-fail.png" width="500">
+<img alt="Open Bill FAIL" src="supply/_img_README/open-bill-fail.png" width="500">
 
 La pièce jointe ne s'affiche pas en mode _employé_ :
 
-<img alt="Open justif FAIL" src="_img_README/justif-fail-employe.png" width="500">
+<img alt="Open justif FAIL" src="supply/_img_README/justif-fail-employe.png" width="500">
 
 Ni en mode _admin_ :
 
-<img alt="Open justif FAIL" src="_img_README/justif-fail-admin.png" width="400">
+<img alt="Open justif FAIL" src="supply/_img_README/justif-fail-admin.png" width="400">
 
 L'inspecteur de _Google Chrome_ indique une adresse ***null*** de l'image, provenant du port utilisé par le _back-end_.
 
-<img alt="Mauvaise adresse d'image" src="_img_README/img-nul-html.png" width="400">
+<img alt="Mauvaise adresse d'image" src="supply/_img_README/img-nul-html.png" width="400">
 
 Dans le fichier [Billed-app-FR-Back/controllers/bill.js](Billed-app-FR-Back/controllers/bill.js), la fonction suivante...
 
@@ -152,11 +152,11 @@ Les justificatifs en _bmp_, par éxemple, s'affichent correctement et dans les d
 
 _Employé_
 
-<img alt="Justificatif bmp" src="_img_README/justif-employe-pass.png" width="400">
+<img alt="Justificatif bmp" src="supply/_img_README/justif-employe-pass.png" width="400">
 
 _Admin_
 
-<img alt="Justificatif bmp" src="_img_README/justif-admin-pass.png" width="400">
+<img alt="Justificatif bmp" src="supply/_img_README/justif-admin-pass.png" width="400">
 
 Par la suite, et afin de limiter les formats d'images acceptés (***png, jpg*** et ***jpeg*** seulement), il est simple d'ajouter un attribut ***accept*** à l'***input*** de type ***file*** dans le fichier [Billed-app-FR-Front/src/views/NewBillUI.js](Billed-app-FR-Front/src/views/NewBillUI.js)
 
@@ -171,6 +171,6 @@ La selection d'un autre type de fichier image est alors impossible.
 
 Ajout d'une mention afin d'avertir l'utilisateur :
 
-<img alt="Modification du <label>" src="_img_README/modif-label.png" width="400">
+<img alt="Modification du <label>" src="supply/_img_README/modif-label.png" width="400">
 
 ***
