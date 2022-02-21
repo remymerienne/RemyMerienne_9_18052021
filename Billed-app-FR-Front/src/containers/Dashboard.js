@@ -27,14 +27,14 @@ export const filteredBills = (data, status) => {
     }) : []
 }
 
-// - Affichage des vignettes 'note de frais'
+// - Modèle des vignettes 'note de frais'
 // -----------------------------------------
 export const card = (bill) => {
   const firstAndLastNames = bill.email.split('@')[0]
   const firstName = firstAndLastNames.includes('.') ?
     firstAndLastNames.split('.')[0] : ''
   const lastName = firstAndLastNames.includes('.') ?
-  firstAndLastNames.split('.')[1] : firstAndLastNames
+    firstAndLastNames.split('.')[1] : firstAndLastNames
   return (`
     <div class='bill-card' id='open-bill${bill.id}' data-testid='open-bill${bill.id}'>
       <div class='bill-card-name-container'>
@@ -70,14 +70,23 @@ export const getStatus = (index) => {
 }
 
 export default class {
-  constructor({ document, onNavigate, store, bills, localStorage }) {
+  constructor({
+    document,
+    onNavigate,
+    store,
+    bills,
+    localStorage
+  }) {
     this.document = document
     this.onNavigate = onNavigate
     this.store = store
     $('#arrow-icon1').click((e) => this.handleShowTickets(e, bills, 1))
     $('#arrow-icon2').click((e) => this.handleShowTickets(e, bills, 2))
     $('#arrow-icon3').click((e) => this.handleShowTickets(e, bills, 3))
-    new Logout({ localStorage, onNavigate })
+    new Logout({
+      localStorage,
+      onNavigate
+    })
   }
 
   handleClickIconEye = () => {
@@ -89,33 +98,77 @@ export default class {
 
   // **************************************************************************
 
+  // - Edite la note de frais sélectionnée,
+  // - au click sur une vignette 
+  // - géré dans 'handleShowTickets'
   handleEditTicket(e, bill, bills) {
+   
+    // - Met le compteur à zéro au premier click
+    // - ou au click sur une autre vignette
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+    console.log(this.counter);
+    
+    // - Assignation de la vignette au click
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    if (this.counter % 2 === 0) {
-      bills.forEach(b => {
-        $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
-      })
-      $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
-      $('.dashboard-right-container div').html(DashboardFormUI(bill))
-      $('.vertical-navbar').css({ height: '150vh' })
-      this.counter ++
-    } else {
-      $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
+    console.log(bill.id);
 
+    // - counter est pair au premier click (0) puis une fois sur deux
+    // - donc affichage des détails de 'bill'
+    if (this.counter % 2 === 0) {
+
+      // - Toutes les vignettes sont bleues
+      bills.forEach(b => {
+        $(`#open-bill${b.id}`).css({
+          background: '#0D5AE5'
+        })
+      })
+
+      // - La vignette sélectionnée devient noire
+      $(`#open-bill${bill.id}`).css({
+        background: '#2A2B35'
+      })
+
+      // - Insertion des données de 'bill' (note de frais) dans le bloc de droite
+      $('.dashboard-right-container div').html(DashboardFormUI(bill))
+
+      // - Agrandissement de la barre latérale de navigation,
+      // - suite au scroll possible pour consulter les détails de la note de frais.
+      // ! Agrandissement insuffisant -> Prévoire 160vh
+      // ! Car zone blanche en bas à droite
+      $('.vertical-navbar').css({
+        height: '150vh'
+      })
+
+      this.counter++
+
+      // - Counter est impair au deuxième click puis une fois sur deux
+    } else {
+
+      // - repassage au bleu
+      $(`#open-bill${bill.id}`).css({
+        background: '#0D5AE5'
+      })
+
+      // - Ré-insertion de l'îcone 'bill'
       $('.dashboard-right-container div').html(`
         <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
       `)
-      $('.vertical-navbar').css({ height: '120vh' })
-      this.counter ++
+
+      // - Retour à l'origine de la barre latérale de navigation
+      $('.vertical-navbar').css({
+        height: '120vh'
+      })
+
+      this.counter++
     }
+    
+    //- Diverses actions sur la note de frais...
     $('#icon-eye-d').click(this.handleClickIconEye)
     $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
   }
-  
-  // **************************************************************************
 
+  // **************************************************************************
 
   handleAcceptSubmit = (e, bill) => {
     const newBill = {
@@ -137,21 +190,29 @@ export default class {
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
 
-  // - Affichage des listes sur click flèches + rotation
+  // - Groupement des vignettes pas statut (validate etc...)
+  // - Rotation des flèches sur click
   // ---------------------------------------------------
   handleShowTickets(e, bills, index) {
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
+    
     if (this.counter % 2 === 0) {
-      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
+      $(`#arrow-icon${this.index}`).css({
+        transform: 'rotate(0deg)'
+      })
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
-      this.counter ++
+
+      this.counter++
+
     } else {
-      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
-      $(`#status-bills-container${this.index}`)
-        .html("")
-      this.counter ++
+      $(`#arrow-icon${this.index}`).css({
+        transform: 'rotate(90deg)'
+      })
+      $(`#status-bills-container${this.index}`).html("")
+
+      this.counter++
     }
 
     bills.forEach(bill => {
@@ -159,27 +220,27 @@ export default class {
     })
 
     return bills
-
   }
+  // - =======================================
 
   getBillsAllUsers = () => {
     if (this.store) {
       return this.store
-      .bills()
-      .list()
-      .then(snapshot => {
-        const bills = snapshot
-        .map(doc => ({
-          id: doc.id,
-          ...doc,
-          date: doc.date,
-          status: doc.status
-        }))
-        return bills
-      })
-      .catch(error => {
-        throw error;
-      })
+        .bills()
+        .list()
+        .then(snapshot => {
+          const bills = snapshot
+            .map(doc => ({
+              id: doc.id,
+              ...doc,
+              date: doc.date,
+              status: doc.status
+            }))
+          return bills
+        })
+        .catch(error => {
+          throw error;
+        })
     }
   }
 
@@ -187,11 +248,14 @@ export default class {
   /* istanbul ignore next */
   updateBill = (bill) => {
     if (this.store) {
-    return this.store
-      .bills()
-      .update({data: JSON.stringify(bill), selector: bill.id})
-      .then(bill => bill)
-      .catch(console.log)
+      return this.store
+        .bills()
+        .update({
+          data: JSON.stringify(bill),
+          selector: bill.id
+        })
+        .then(bill => bill)
+        .catch(console.log)
     }
   }
 }
