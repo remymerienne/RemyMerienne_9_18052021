@@ -102,15 +102,17 @@ export default class {
   // - au click sur une vignette 
   // - géré dans 'handleShowTickets'
   handleEditTicket(e, bill, bills) {
+
+    e.stopImmediatePropagation()
    
     // - Met le compteur à zéro au premier click
     // - ou au click sur une autre vignette
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
-    console.log(this.counter);
+    // console.log(this.counter);
     
     // - Assignation de la vignette au click
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    console.log(bill.id);
+    // console.log(bill.id);
 
     // - counter est pair au premier click (0) puis une fois sur deux
     // - donc affichage des détails de 'bill'
@@ -133,8 +135,8 @@ export default class {
 
       // - Agrandissement de la barre latérale de navigation,
       // - suite au scroll possible pour consulter les détails de la note de frais.
-      // ! Agrandissement insuffisant -> Prévoire 160vh
-      // ! Car zone blanche en bas à droite
+      // ! Agrandissement insuffisant -> Prévoire 160vh iso 150vh
+      // ! Car zone blanche en bas à gauche
       $('.vertical-navbar').css({
         height: '150vh'
       })
@@ -194,6 +196,7 @@ export default class {
   // - Rotation des flèches sur click
   // ---------------------------------------------------
   handleShowTickets(e, bills, index) {
+
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
     
