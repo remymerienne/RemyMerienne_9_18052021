@@ -183,11 +183,11 @@ describe('Given I am connected as an Admin', () => {
       expect(screen.getByTestId(`open-bill47qAXb6fIm2zOKkLzMro`)).toBeTruthy()
 
       // * Partie de test qui me semble inutile.
-      // * Avec un Doublon ligne 190 et 191.
+      // * Avec un Doublon ligne 189 et 190.
       // * Fait échouer le test.
       const iconEdit = screen.getByTestId('open-bill47qAXb6fIm2zOKkLzMro')
       userEvent.click(iconEdit)
-      // userEvent.click(iconEdit)
+      userEvent.click(iconEdit)
       // ****************************************
 
       const bigBilledIcon = screen.queryByTestId("big-billed-icon")
