@@ -17,6 +17,7 @@ export default ({ data, loading, error }) => {
     <div class='layout'>
       ${VerticalLayout(120)}
       <div class='dashboard-content'>
+
         <div class='bills-feed'>
           <div class='status-bills-header'>
             <h3> En attente (${filteredBills(data && data.bills, "pending").length}) </h3>
@@ -40,9 +41,11 @@ export default ({ data, loading, error }) => {
             </div>
 
         </div>
-        <div class="dashboard-right-container">
-          <h3> Validations </h3>
-          <div><div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div></div>
+          <div class="dashboard-right-container">
+            <h3> Validations </h3>
+            <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
+        </div>
+        
       </div>
     </div>`
   )

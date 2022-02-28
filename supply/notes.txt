@@ -1,0 +1,40 @@
+Lancer un seul test :
+---------------------
+npm i -g jest-cli
+jest src/__tests__/your_test_file.js
+
+*************************************************
+
+Voir la couverture de test :
+----------------------------
+http://127.0.0.1:8080/coverage/lcov-report/
+
+*************************************************
+
+Terminaux :
+------------------
+npm run run:dev (back-end)
+live-server --port=8080 --open=
+npm run test
+npm run test-cov
+
+*************************************************
+
+Codes admin :
+----------------------
+utilisateur : admin@test.tld 
+mot de passe : admin
+
+Codes employé :
+--------------------------
+utilisateur : employee@test.tld
+mot de passe : employee
+
+*************************************************
+
+liens :
+---------
+https://openclassrooms.com/fr/paths/314/projects/809/assignment
+https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Front
+https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back
+https://www.notion.so/a7a612fc166747e78d95aa38106a55ec?v=2a8d3553379c4366b6f66490ab8f0b90
