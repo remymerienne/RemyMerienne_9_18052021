@@ -3,6 +3,7 @@
  */
 
 import { screen } from "@testing-library/dom"
+import '@testing-library/jest-dom'
 import BillsUI from "../views/BillsUI.js"
 import { bills } from "../fixtures/bills.js"
 
@@ -11,7 +12,8 @@ describe("Given I am connected as an employee", () => {
     test("Then bill icon in vertical layout should be highlighted", () => {
       const html = BillsUI({ data: []})
       document.body.innerHTML = html
-      //to-do write expect expression
+      // * to-do write expect expression
+      // expect(screen.getByTestId('icon-window')).toHaveClass('active-icon')
     })
     test("Then bills should be ordered from earliest to latest", () => {
       const html = BillsUI({ data: bills })

@@ -108,7 +108,7 @@ export default class {
     // - Met le compteur à zéro au premier click
     // - ou au click sur une autre vignette
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
-    // console.log(this.counter);
+    console.log(this.counter);
     
     // - Assignation de la vignette au click
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
@@ -130,6 +130,9 @@ export default class {
         background: '#2A2B35'
       })
 
+     
+      
+
       // - Insertion des données de 'bill' (note de frais) dans le bloc de droite
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
 
@@ -142,9 +145,19 @@ export default class {
       })
 
       this.counter++
+      
+
 
       // - Counter est impair au deuxième click puis une fois sur deux
     } else {
+
+       // ******************************************************
+       const parent = document.querySelector('div.dashboard-right-container');
+       console.log(parent);
+       const child = document.querySelector('div#big-billed-icon');
+       console.log(child);
+ 
+       parent.removeChild(child);
 
       // - repassage au bleu
       $(`#open-bill${bill.id}`).css({
