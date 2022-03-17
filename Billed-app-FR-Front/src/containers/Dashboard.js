@@ -29,6 +29,7 @@ export const filteredBills = (data, status) => {
 
 // - Modèle des vignettes 'note de frais'
 // -----------------------------------------
+
 export const card = (bill) => {
   const firstAndLastNames = bill.email.split('@')[0]
   const firstName = firstAndLastNames.includes('.') ?
@@ -52,6 +53,7 @@ export const card = (bill) => {
     </div>
   `)
 }
+
 // - =======================================
 
 export const cards = (bills) => {
@@ -96,8 +98,6 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
-  // **************************************************************************
-
   // - Edite la note de frais sélectionnée,
   // - au click sur une vignette 
   // - géré dans 'handleShowTickets'
@@ -108,11 +108,9 @@ export default class {
     // - Met le compteur à zéro au premier click
     // - ou au click sur une autre vignette
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
-    console.log(this.counter);
     
     // - Assignation de la vignette au click
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    // console.log(bill.id);
 
     // - counter est pair au premier click (0) puis une fois sur deux
     // - donc affichage des détails de 'bill'
@@ -130,9 +128,6 @@ export default class {
         background: '#2A2B35'
       })
 
-     
-      
-
       // - Insertion des données de 'bill' (note de frais) dans le bloc de droite
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
 
@@ -145,19 +140,9 @@ export default class {
       })
 
       this.counter++
-      
-
 
       // - Counter est impair au deuxième click puis une fois sur deux
     } else {
-
-       // ******************************************************
-       const parent = document.querySelector('div.dashboard-right-container');
-       console.log(parent);
-       const child = document.querySelector('div#big-billed-icon');
-       console.log(child);
- 
-       parent.removeChild(child);
 
       // - repassage au bleu
       $(`#open-bill${bill.id}`).css({
@@ -174,7 +159,7 @@ export default class {
         height: '120vh'
       })
 
-      this.counter++
+      this.counter++;
     }
     
     //- Diverses actions sur la note de frais...
@@ -237,6 +222,7 @@ export default class {
 
     return bills
   }
+
   // - =======================================
 
   getBillsAllUsers = () => {
