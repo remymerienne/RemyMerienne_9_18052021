@@ -34,7 +34,6 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
-      // * to-do write expect expression
       // * Le routeur injecte la classe 'active-icon' quand l'utilisateur est
       // * sur la page 'Bills'
       expect(windowIcon).toHaveClass('active-icon');

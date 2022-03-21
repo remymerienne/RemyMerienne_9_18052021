@@ -17,16 +17,21 @@ Projet N°6 du parcours _Développeur Front-End_ [OpenClassrooms](https://opencl
 
 - [1. Billed](#1-billed)
   - [1.1. Débugger et tester un SaaS RH](#11-débugger-et-tester-un-saas-rh)
-    - [1.1.1. Bug report - Bills](#111-bug-report---bills)
-    - [1.1.2. Bug report - Login](#112-bug-report---login)
-    - [1.1.3. Bug hunt - Bills](#113-bug-hunt---bills)
-      - [1.1.3.1. Solution alternative](#1131-solution-alternative)
-    - [1.1.4. Bug Hunt - Dashboard](#114-bug-hunt---dashboard)
-    - [1.1.5. All tests Pass](#115-all-tests-pass)
+  - [1.2. Correction des bugs](#12-correction-des-bugs)
+    - [1.2.1. Bug report - Bills](#121-bug-report---bills)
+    - [1.2.2. Bug report - Login](#122-bug-report---login)
+    - [1.2.3. Bug hunt - Bills](#123-bug-hunt---bills)
+      - [1.2.3.1. Solution alternative](#1231-solution-alternative)
+    - [1.2.4. Bug hunt - Dashboard](#124-bug-hunt---dashboard)
+    - [1.2.5. All tests Pass](#125-all-tests-pass)
+  - [1.3. Ajout de tests unitaires et d'intégration](#13-ajout-de-tests-unitaires-et-dintégration)
+    - [1.3.1. Highlighted bill icon](#131-highlighted-bill-icon)
   
 ***
 
-### 1.1.1. Bug report - Bills
+## 1.2. Correction des bugs
+
+### 1.2.1. Bug report - Bills
 
 Le test ci-dessous nous démontre que l'affichage des notes de frais n'est pas conforme aux attentes.  
 Les notes devraient apparaître de la plus récente à la plus ancienne.
@@ -67,7 +72,7 @@ Le test passe maintenant au vert.
 
 <img alt="Rapport de test nº1 PASS" src="supply/img_README/bug-1-pass.png" width="500">
 
-### 1.1.2. Bug report - Login
+### 1.2.2. Bug report - Login
 
 Le test suivant met en évidence l'impossibilité de se connnecter en tant qu'administrateur malgré des identifiants corrects.
 
@@ -104,7 +109,7 @@ Le test passe :
 
 <img alt="Rapport de test nº2 PASS" src="supply/img_README/bug-2-pass.png" width="500">
 
-### 1.1.3. Bug hunt - Bills
+### 1.2.3. Bug hunt - Bills
 
 Le justificatif d'une note de frais n'apparait pas si son format est autre que ***jpg***, ***png*** ou ***jpeg***.
 
@@ -167,7 +172,7 @@ _Admin_
 
 <img alt="Justificatif bmp" src="supply/img_README/justif-admin-pass.png" width="400">
 
-#### 1.1.3.1. Solution alternative
+#### 1.2.3.1. Solution alternative
 
 Afin de limiter les formats d'images acceptés (***png, jpg*** et ***jpeg*** seulement), il est simple d'ajouter un attribut ***accept*** à l'***input*** de type ***file*** dans le fichier [Billed-app-FR-Front/src/views/NewBillUI.js](Billed-app-FR-Front/src/views/NewBillUI.js)
 
@@ -184,7 +189,7 @@ Ajout d'une mention afin d'avertir l'utilisateur :
 
 <img alt="Modification du <label>" src="supply/img_README/modif-label.png" width="400">
 
-### 1.1.4. Bug Hunt - Dashboard
+### 1.2.4. Bug hunt - Dashboard
 
 Connecté en tant qu'administrateur, la navigation entre les statuts  des notes de frais ne fonctionne pas correctement.  
 Le retour à un statut précédement consulté n'affiche plus les notes de frais concernées.
@@ -263,8 +268,52 @@ handleEditTicket(e, bill, bills) {
 }
 ```
 
-### 1.1.5. All tests Pass
+### 1.2.5. All tests Pass
 
 Tous les tests sont maintenant au vert :
 
-<img alt="All tests pass" src="supply/img_README/all-test-ok.png" width="400">
+<img alt="All tests pass" src="supply/img_README/all-test-ok.png" width="300">
+
+## 1.3. Ajout de tests unitaires et d'intégration
+
+### 1.3.1. Highlighted bill icon
+
+Lorsqu'un employé est connecté, l'icone 'fenêtre' dans le menu vertical de gauche prend un aspect de surbrillance :
+
+<img alt="Highlighted icon" src="supply/img_README/connected-icon.png" width="100">
+
+Cet aspect est apporté grâce à la classe 'active-icon' :
+
+<img alt="Highlighted icon html" src="supply/img_README/connected-icon-html.png" width="400">
+
+Le test ci-dessous simule la connexion d'un employé :
+
+```js
+describe("Given I am connected as an employee", () => {
+  describe("When I am on Bills Page", () => {
+    test("Then bill icon in vertical layout should be highlighted", async () => {
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+      window.localStorage.setItem('user', JSON.stringify({
+        type: 'Employee'
+      }))
+      const root = document.createElement("div")
+      root.setAttribute("id", "root")
+      document.body.append(root)
+      router()
+      window.onNavigate(ROUTES_PATH.Bills)
+      await waitFor(() => screen.getByTestId('icon-window'))
+      const windowIcon = screen.getByTestId('icon-window')
+      // expect...
+    })
+  })
+})
+```
+
+En ajoutant l'expect suivant, nous testons si l'icone recoit bien la classe 'active-icon' :
+
+```js
+// * Le routeur injecte la classe 'active-icon' quand l'utilisateur est
+// * sur la page 'Bills'
+expect(windowIcon).toHaveClass('active-icon');
+```
+
