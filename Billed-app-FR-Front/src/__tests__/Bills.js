@@ -2,14 +2,14 @@
  * @jest-environment jsdom
  */
 
-// * Impotation de jest/dom
-import '@testing-library/jest-dom'
+// // * Impotation de jest/dom
+// import '@testing-library/jest-dom'
 
-// * unit test
-import userEvent from '@testing-library/user-event'
-import Bills from '../containers/Bills.js'
-import store from '../__mocks__/store.js'
-// import { localStorage } from '../__mocks__/localStorage.js'
+// // * unit test
+// import userEvent from '@testing-library/user-event'
+// import Bills from '../containers/Bills.js'
+// import store from '../__mocks__/store.js'
+// // import { localStorage } from '../__mocks__/localStorage.js'
 
 import {screen, waitFor} from "@testing-library/dom"
 import BillsUI from "../views/BillsUI.js"
@@ -34,7 +34,6 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
-      // * to-do write expect expression
       // * Le routeur injecte la classe 'active-icon' quand l'utilisateur est
       // * sur la page 'Bills'
       expect(windowIcon).toHaveClass('active-icon');
@@ -51,35 +50,35 @@ describe("Given I am connected as an employee", () => {
 
 // = ==========================================================================
 
-describe('handleClickIconEye(icon) Unit Test Suites', () => {
+// describe('handleClickIconEye(icon) Unit Test Suites', () => {
 
 
-  it('should return something', () => {
+//   it('should return something', () => {
 
-    document.body.innerHTML = '';
+//     document.body.innerHTML = '';
 
-    const myBill = new Bills({ document, onNavigate, store, localStorage });
-    document.body.innerHTML = BillsUI({ data: bills });
+//     const myBill = new Bills({ document, onNavigate, store, localStorage });
+//     document.body.innerHTML = BillsUI({ data: bills });
 
-    const iconEye = screen.getAllByTestId(`icon-eye`);
+//     const iconEye = screen.getAllByTestId(`icon-eye`);
 
-    iconEye.forEach(icon => {
-      myBill.handleClickIconEye(icon)
-      userEvent.click(icon)
-      // myBill.handleClickIconEye(icon)
-      // expect(myBill.handleClickIconEye(icon)).toHaveBeenCalled()
-    })
-
-
-
+//     iconEye.forEach(icon => {
+//       myBill.handleClickIconEye(icon)
+//       userEvent.click(icon)
+//       // myBill.handleClickIconEye(icon)
+//       // expect(myBill.handleClickIconEye(icon)).toHaveBeenCalled()
+//     })
 
 
 
-  });
-});
 
-// iconEye.forEach(icon => {
-//   icon.addEventListener('click', () => this.handleClickIconEye(icon))
-// })
 
-// userEvent.click(iconEdit)
+
+//   });
+// });
+
+// // iconEye.forEach(icon => {
+// //   icon.addEventListener('click', () => this.handleClickIconEye(icon))
+// // })
+
+// // userEvent.click(iconEdit)
