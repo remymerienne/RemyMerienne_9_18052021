@@ -26,6 +26,8 @@ Projet N°6 du parcours _Développeur Front-End_ [OpenClassrooms](https://opencl
     - [1.2.5. All tests Pass](#125-all-tests-pass)
   - [1.3. Ajout de tests unitaires et d'intégration](#13-ajout-de-tests-unitaires-et-dintégration)
     - [1.3.1. Highlighted bill icon](#131-highlighted-bill-icon)
+    - [1.3.2. Composant container/Bill](#132-composant-containerbill)
+      - [1.3.2.1. Couverture à 80%](#1321-couverture-à-80)
   
 ***
 
@@ -317,3 +319,6 @@ En ajoutant l'expect suivant, nous testons si l'icone recoit bien la classe 'act
 expect(windowIcon).toHaveClass('active-icon');
 ```
 
+### 1.3.2. Composant container/Bill
+
+#### 1.3.2.1. Couverture à 80%
