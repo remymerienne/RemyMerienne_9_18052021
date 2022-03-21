@@ -181,15 +181,9 @@ describe('Given I am connected as an Admin', () => {
       userEvent.click(icon1)
       expect(handleShowTickets1).toHaveBeenCalled()
       expect(screen.getByTestId(`open-bill47qAXb6fIm2zOKkLzMro`)).toBeTruthy()
-
-      // * Partie de test qui me semble inutile.
-      // * Avec un Doublon ligne 189 et 190.
-      // * Fait échouer le test.
       const iconEdit = screen.getByTestId('open-bill47qAXb6fIm2zOKkLzMro')
       userEvent.click(iconEdit)
       userEvent.click(iconEdit)
-      // **************************************
-
       const bigBilledIcon = screen.queryByTestId("big-billed-icon")
       expect(bigBilledIcon).toBeTruthy()
     })

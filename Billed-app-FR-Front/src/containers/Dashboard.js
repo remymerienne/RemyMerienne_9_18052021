@@ -27,8 +27,6 @@ export const filteredBills = (data, status) => {
     }) : []
 }
 
-// - Modèle des vignettes 'note de frais'
-// -----------------------------------------
 export const card = (bill) => {
   const firstAndLastNames = bill.email.split('@')[0]
   const firstName = firstAndLastNames.includes('.') ?
@@ -52,7 +50,6 @@ export const card = (bill) => {
     </div>
   `)
 }
-// - =======================================
 
 export const cards = (bills) => {
   return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
@@ -96,94 +93,42 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
-  // **************************************************************************
-
-  // - Edite la note de frais sélectionnée,
-  // - au click sur une vignette 
-  // - géré dans 'handleShowTickets'
   handleEditTicket(e, bill, bills) {
 
     e.stopImmediatePropagation()
-   
-    // - Met le compteur à zéro au premier click
-    // - ou au click sur une autre vignette
-    if (this.counter === undefined || this.id !== bill.id) this.counter = 0
-    console.log(this.counter);
-    
-    // - Assignation de la vignette au click
-    if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    // console.log(bill.id);
 
-    // - counter est pair au premier click (0) puis une fois sur deux
-    // - donc affichage des détails de 'bill'
+    if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+    if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if (this.counter % 2 === 0) {
 
-      // - Toutes les vignettes sont bleues
-      bills.forEach(b => {
-        $(`#open-bill${b.id}`).css({
-          background: '#0D5AE5'
-        })
-      })
+      bills.forEach(b => {$(`#open-bill${b.id}`).css({background: '#0D5AE5'})})
 
-      // - La vignette sélectionnée devient noire
-      $(`#open-bill${bill.id}`).css({
-        background: '#2A2B35'
-      })
+      $(`#open-bill${bill.id}`).css({background: '#2A2B35'})
 
-     
-      
-
-      // - Insertion des données de 'bill' (note de frais) dans le bloc de droite
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
 
-      // - Agrandissement de la barre latérale de navigation,
-      // - suite au scroll possible pour consulter les détails de la note de frais.
-      // ! Agrandissement insuffisant -> Prévoire 160vh iso 150vh
-      // ! Car zone blanche en bas à gauche
-      $('.vertical-navbar').css({
-        height: '150vh'
-      })
+      $('.vertical-navbar').css({height: '160vh'})
 
       this.counter++
-      
 
-
-      // - Counter est impair au deuxième click puis une fois sur deux
     } else {
 
-       // ******************************************************
-       const parent = document.querySelector('div.dashboard-right-container');
-       console.log(parent);
-       const child = document.querySelector('div#big-billed-icon');
-       console.log(child);
- 
-       parent.removeChild(child);
+      $(`#open-bill${bill.id}`).css({background: '#0D5AE5'})
 
-      // - repassage au bleu
-      $(`#open-bill${bill.id}`).css({
-        background: '#0D5AE5'
-      })
-
-      // - Ré-insertion de l'îcone 'bill'
       $('.dashboard-right-container div').html(`
         <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
       `)
 
-      // - Retour à l'origine de la barre latérale de navigation
-      $('.vertical-navbar').css({
-        height: '120vh'
-      })
+      $('.vertical-navbar').css({height: '120vh'})
 
-      this.counter++
+      this.counter++;
     }
     
-    //- Diverses actions sur la note de frais...
     $('#icon-eye-d').click(this.handleClickIconEye)
     $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
-  }
 
-  // **************************************************************************
+  }
 
   handleAcceptSubmit = (e, bill) => {
     const newBill = {
@@ -205,9 +150,6 @@ export default class {
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
 
-  // - Groupement des vignettes pas statut (validate etc...)
-  // - Rotation des flèches sur click
-  // ---------------------------------------------------
   handleShowTickets(e, bills, index) {
 
     if (this.counter === undefined || this.index !== index) this.counter = 0
@@ -237,7 +179,6 @@ export default class {
 
     return bills
   }
-  // - =======================================
 
   getBillsAllUsers = () => {
     if (this.store) {

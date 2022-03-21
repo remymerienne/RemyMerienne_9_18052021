@@ -1,18 +1,37 @@
+# 1. Billed
+
+Projet N°6 du parcours _Développeur Front-End_ [OpenClassrooms](https://openclassrooms.com/fr/).
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  
+![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)  
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)
+
+## 1.1. Débugger et tester un SaaS RH
+
+- Ecrire des tests unitaires avec JavaScript
+- Débuggger une application web avec Chrome Debugger
+- Rédiger un plan de test end-to-end
+- Ecrire des tests d'intégration avec JavaScript
+
 ***
 
-- [1. Bug report - Bills](#1-bug-report---bills)
-- [2. Bug report - Login](#2-bug-report---login)
-- [3. All tests passed](#3-all-tests-passed)
-- [4. Bug hunt - Bills](#4-bug-hunt---bills)
+- [1. Billed](#1-billed)
+  - [1.1. Débugger et tester un SaaS RH](#11-débugger-et-tester-un-saas-rh)
+    - [1.1.1. Bug report - Bills](#111-bug-report---bills)
+    - [1.1.2. Bug report - Login](#112-bug-report---login)
+    - [1.1.3. Bug hunt - Bills](#113-bug-hunt---bills)
+      - [1.1.3.1. Solution alternative](#1131-solution-alternative)
+    - [1.1.4. Bug Hunt - Dashboard](#114-bug-hunt---dashboard)
+    - [1.1.5. All tests Pass](#115-all-tests-pass)
   
 ***
 
-## 1. Bug report - Bills
+### 1.1.1. Bug report - Bills
 
 Le test ci-dessous nous démontre que l'affichage des notes de frais n'est pas conforme aux attentes.  
 Les notes devraient apparaître de la plus récente à la plus ancienne.
 
-<img alt="Rapport de test nº1 FAIL" src="supply/_img_README/bug-1-fail.png" width="700">
+<img alt="Rapport de test nº1 FAIL" src="supply/img_README/bug-1-fail.png" width="700">
 
 Nous pouvons constater dans le fichier [Billed-app-FR-Front/src/views/BillsUI.js](Billed-app-FR-Front/src/views/BillsUI.js) que la fonction suivante...
 
@@ -22,7 +41,7 @@ const rows = (data) => {
 }
 ```
 
-... crée une ***map*** des notes de frais sans opérer de tri préalable.
+...crée une ***map*** des notes de frais sans opérer de tri préalable.
 
 La création d'une fonction de comparaison assignée à la méthode ***.sort()*** et appliquée à ***data*** avant la création de la ***map*** va permettre un affichage conforme.
 
@@ -46,15 +65,13 @@ const rows = (data) => {
 
 Le test passe maintenant au vert.
 
-<img alt="Rapport de test nº1 PASS" src="supply/_img_README/bug-1-pass.png" width="500">
+<img alt="Rapport de test nº1 PASS" src="supply/img_README/bug-1-pass.png" width="500">
 
-***
-
-## 2. Bug report - Login
+### 1.1.2. Bug report - Login
 
 Le test suivant met en évidence l'impossibilité de se connnecter en tant qu'administrateur malgré des identifiants corrects.
 
-<img alt="Rapport de test nº2 FAIL" src="supply/_img_README/bug-2-fail.png" width="700">
+<img alt="Rapport de test nº2 FAIL" src="supply/img_README/bug-2-fail.png" width="700">
 
 La méthode ***.handleSubmitAdmin()*** de la classs ***Login*** située dans le fichier [Billed-app-FR-Front/src/containers/Login.js](Billed-app-FR-Front/src/containers/Login.js) récupère les données de l'***input*** en ciblant l'attribut ***data-testid***.
 
@@ -85,35 +102,27 @@ handleSubmitAdmin = e => {
 
 Le test passe :
 
-<img alt="Rapport de test nº2 PASS" src="supply/_img_README/bug-2-pass.png" width="500">
+<img alt="Rapport de test nº2 PASS" src="supply/img_README/bug-2-pass.png" width="500">
 
-***
-
-## 3. All tests passed
-
-<img alt="Rapport de test nº2 PASS" src="supply/_img_README/all-test-pass.png" width="300">
-
-***
-
-## 4. Bug hunt - Bills
+### 1.1.3. Bug hunt - Bills
 
 Le justificatif d'une note de frais n'apparait pas si son format est autre que ***jpg***, ***png*** ou ***jpeg***.
 
 Exemple ci-dessous lors de la créaton d'une note avec un justificatif au format ***bmp*** :
 
-<img alt="Open Bill FAIL" src="supply/_img_README/open-bill-fail.png" width="500">
+<img alt="Open Bill FAIL" src="supply/img_README/open-bill-fail.png" width="500">
 
 La pièce jointe ne s'affiche pas en mode _employé_ :
 
-<img alt="Open justif FAIL" src="supply/_img_README/justif-fail-employe.png" width="500">
+<img alt="Open justif FAIL" src="supply/img_README/justif-fail-employe.png" width="500">
 
 Ni en mode _admin_ :
 
-<img alt="Open justif FAIL" src="supply/_img_README/justif-fail-admin.png" width="400">
+<img alt="Open justif FAIL" src="supply/img_README/justif-fail-admin.png" width="400">
 
 L'inspecteur de _Google Chrome_ indique une adresse ***null*** de l'image, provenant du port utilisé par le _back-end_.
 
-<img alt="Mauvaise adresse d'image" src="supply/_img_README/img-nul-html.png" width="400">
+<img alt="Mauvaise adresse d'image" src="supply/img_README/img-nul-html.png" width="400">
 
 Dans le fichier [Billed-app-FR-Back/controllers/bill.js](Billed-app-FR-Back/controllers/bill.js), la fonction suivante...
 
@@ -152,13 +161,15 @@ Les justificatifs en _bmp_, par éxemple, s'affichent correctement et dans les d
 
 _Employé_
 
-<img alt="Justificatif bmp" src="supply/_img_README/justif-employe-pass.png" width="400">
+<img alt="Justificatif bmp" src="supply/img_README/justif-employe-pass.png" width="400">
 
 _Admin_
 
-<img alt="Justificatif bmp" src="supply/_img_README/justif-admin-pass.png" width="400">
+<img alt="Justificatif bmp" src="supply/img_README/justif-admin-pass.png" width="400">
 
-Par la suite, et afin de limiter les formats d'images acceptés (***png, jpg*** et ***jpeg*** seulement), il est simple d'ajouter un attribut ***accept*** à l'***input*** de type ***file*** dans le fichier [Billed-app-FR-Front/src/views/NewBillUI.js](Billed-app-FR-Front/src/views/NewBillUI.js)
+#### 1.1.3.1. Solution alternative
+
+Afin de limiter les formats d'images acceptés (***png, jpg*** et ***jpeg*** seulement), il est simple d'ajouter un attribut ***accept*** à l'***input*** de type ***file*** dans le fichier [Billed-app-FR-Front/src/views/NewBillUI.js](Billed-app-FR-Front/src/views/NewBillUI.js)
 
 ```html
 <div class="col-half">
@@ -171,6 +182,89 @@ La selection d'un autre type de fichier image est alors impossible.
 
 Ajout d'une mention afin d'avertir l'utilisateur :
 
-<img alt="Modification du <label>" src="supply/_img_README/modif-label.png" width="400">
+<img alt="Modification du <label>" src="supply/img_README/modif-label.png" width="400">
 
-***
+### 1.1.4. Bug Hunt - Dashboard
+
+Connecté en tant qu'administrateur, la navigation entre les statuts  des notes de frais ne fonctionne pas correctement.  
+Le retour à un statut précédement consulté n'affiche plus les notes de frais concernées.
+
+C'est la méthode ***handleEditTicket()*** de la classe ***Dashboard*** qui gère l'édition des notres de frais.
+
+```js
+handleEditTicket(e, bill, bills) {
+
+  if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+  if (this.id === undefined || this.id !== bill.id) this.id = bill.id
+  if (this.counter % 2 === 0) {
+
+    bills.forEach(b => {$(`#open-bill${b.id}`).css({background: '#0D5AE5'})})
+
+    $(`#open-bill${bill.id}`).css({background: '#2A2B35'})
+
+    $('.dashboard-right-container div').html(DashboardFormUI(bill))
+
+    $('.vertical-navbar').css({height: '150vh'})
+
+    this.counter++
+
+  } else {
+
+    $(`#open-bill${bill.id}`).css({background: '#0D5AE5'})
+
+    $('.dashboard-right-container div').html(`
+      <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
+    `)
+
+    $('.vertical-navbar').css({height: '120vh'})
+
+    this.counter++;
+  }
+
+  console.log(this.counter);
+  
+  $('#icon-eye-d').click(this.handleClickIconEye)
+  $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
+  $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
+  
+}
+```
+
+A chaque clic sur une vignette, un compteur est incrémenté et passe d'un état de nombre pair à impair modifiant ainsi l'affichage alternativement.
+
+En affichant dans la console le compteur, on peut voir qu'en cliquant plusieurs fois sur la même vignette, le compteur fonctionne correctement.
+
+<img alt="Dashboard compteur" src="supply/img_README/dashboard-compteur.png" width="400">
+
+Lorsque l'on change de catégorie et que l'on revients sur une précédente vignette, on peut voir ci-dessous que le compteur est incrémenté deux fois pour un unique clic, et passe donc d'un état 'pair - impair - pair' ce qui annule la modification de l'affichage.
+
+<img alt="Dashboard compteur-2" src="supply/img_README/dashboard-compteur-2.png" width="400">
+
+On peut en déduire qu'en changeant de type de notes de frais, nous rappelons les notes précédentes, puis celle sélectionnée, car les actions 'écoutées' pour les trois types de listes sont associés au même évennement.
+
+Ici, cet évennement à la fin de la méthose ***handleShowTicket()*** qui nous renvoie, pour tous les types de note, à la même méthode :
+
+```js
+bills.forEach(bill => {
+  $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+})
+```
+
+En ajoutant la méthode ***stopImmediatePropagation()*** à la méthode de classe ***handleEditTicket()***, nous limitons l'appel à notre seul évennement désiré :
+
+```js
+handleEditTicket(e, bill, bills) {
+
+  e.stopImmediatePropagation()
+  ...
+  ...
+  ...
+
+}
+```
+
+### 1.1.5. All tests Pass
+
+Tous les tests sont maintenant au vert :
+
+<img alt="All tests pass" src="supply/img_README/all-test-ok.png" width="400">
