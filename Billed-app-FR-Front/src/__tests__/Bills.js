@@ -4,6 +4,7 @@
 
 // * Impotation de jest/dom
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 import Bills from '../containers/Bills.js';
 
@@ -48,10 +49,15 @@ describe('Given I am connected as an employee', () => {
 
 		// ********* Ligne 26 handleClickNewBill()
 		describe("When I click on button 'new bill'", () => {
+			const handleClickNewBill = jest.fn((e) => dashboard.handleAcceptSubmit(e, bills[0]));
 			test('Then we should be redirect to the new bill page', () => {
 				const html = BillsUI({ data: bills });
 				document.body.innerHTML = html;
+				const newBillButton = screen.getByTestId('btn-new-bill');
+				newBillButton.addEventListener('click', handleClickNewBill);
+				userEvent.click(newBillButton);
 				console.log(html);
+				expect();
 			});
 		});
 	});
