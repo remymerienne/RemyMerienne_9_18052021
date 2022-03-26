@@ -12,10 +12,9 @@ import store from '../app/Store';
 import { screen, waitFor } from '@testing-library/dom';
 import BillsUI from '../views/BillsUI.js';
 import { bills } from '../fixtures/bills.js';
-import { ROUTES_PATH } from '../constants/routes.js';
+import { ROUTES_PATH, ROUTES } from '../constants/routes.js';
 import { localStorageMock } from '../__mocks__/localStorage.js';
 import router from '../app/Router.js';
-import NewBillUI from '../views/NewBillUI.js';
 
 describe('Given I am connected as an employee', () => {
   describe('When I am on Bills Page', () => {
@@ -49,19 +48,19 @@ describe('Given I am connected as an employee', () => {
       expect(dates).toEqual(datesSorted);
     });
 
-    // ********* Ligne 26 handleClickNewBill()
+    // ********* Ligne 27 handleClickNewBill()
     describe("When I click on button 'new bill'", () => {
-      const bills = new Bills({ document, router, store, localStorage });
-      const handleClickNewBill = jest.fn((e) => bills.handleClickNewBill());
-
       test('Then we should be redirect to the new bill page', () => {
+        const onNavigate = (pathname) => {
+          document.body.innerHTML = ROUTES({
+            pathname,
+          });
+        };
+        const bills = new Bills({ document, onNavigate, store, localStorage });
         document.body.innerHTML = BillsUI({ data: bills });
-
         const newBillButton = screen.getByTestId('btn-new-bill');
-
-        newBillButton.addEventListener('click', handleClickNewBill);
+        newBillButton.addEventListener('click', bills.handleClickNewBill());
         userEvent.click(newBillButton);
-
         expect(screen.getByTestId('form-new-bill')).toBeTruthy();
       });
     });

@@ -22,7 +22,7 @@ export default class {
     new Logout({ document, localStorage, onNavigate });
   }
 
-  // ********* Ligne 26 handleClickNewBill()
+  // ********* Ligne 27 handleClickNewBill()
   handleClickNewBill = () => {
     this.onNavigate(ROUTES_PATH['NewBill']);
   };
